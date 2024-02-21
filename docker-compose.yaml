@@ -1,0 +1,6 @@
+
+services:
+  llava:
+    build: Dockerfile.llava
+    ports: 
+      - "33670:33300"
