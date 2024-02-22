@@ -1,7 +1,7 @@
 import requests
 
 # URL of your Flask route
-url = 'http://localhost:5000/llava'
+url = 'http://localhost:33670/llava'
 
 # Path to the image file
 image_path = '/scratch/shuzhao/Dataset/USGG/GQA/images/10.jpg'

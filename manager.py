@@ -1,11 +1,21 @@
 import yaml
+import shutil
 
 compose_template = r"""
 services:
   {MODEL_VERSION}:
-    build: Dockerfile.{MODEL_VERSION}
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports: 
       - "{HOST_PORT}:{FLASK_PORT}"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['{GPU_ID}']
+              capabilities: [gpu]
 """
 
 if __name__ == "__main__":
@@ -18,7 +28,11 @@ if __name__ == "__main__":
         "{HOST_PORT}", str(cfg["host_port"])
         ).replace(
         "{FLASK_PORT}", str(cfg["flask_port"])
+        ).replace(
+        "{GPU_ID}", str(cfg["gpu_id"])
         )
     with open("docker-compose.yaml", "w") as f:
         f.write(compose_ins)
+
+    shutil.copy(f"./dockerfiles/Dockerfile.{cfg['model_version']}", "./Dockerfile")
 

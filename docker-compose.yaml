@@ -1,6 +1,15 @@
 
 services:
   llava:
-    build: Dockerfile.llava
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports: 
-      - "33670:33300"
+      - "33670:5000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['7']
+              capabilities: [gpu]

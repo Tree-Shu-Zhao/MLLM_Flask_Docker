@@ -27,3 +27,9 @@ WORKDIR /root
 RUN git clone https://github.com/haotian-liu/LLaVA.git
 WORKDIR /root/LLaVA
 RUN pip install --upgrade pip flask protobuf && pip install -e .
+
+# Deploy flask
+COPY ./flask_src /root/flask_src
+WORKDIR /root/flask_src
+
+ENTRYPOINT [ "python", "app.py" ]

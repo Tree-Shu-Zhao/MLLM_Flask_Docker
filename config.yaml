@@ -1,3 +1,4 @@
 model_version: llava
 host_port: 33670
-flask_port: 33300
+flask_port: 5000
+gpu_id: 7
