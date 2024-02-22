@@ -1,7 +1,8 @@
 import os
 
 from flask import Flask, request, jsonify
-from .model_controller import ModelController
+from models import ModelController
+from PIL import Image
 
 
 app = Flask(__name__)
@@ -9,9 +10,12 @@ app = Flask(__name__)
 model_version = os.environ['MODEL_VERSION']
 model = ModelController(model_version)
 
-@app.route(f"/{model_version}")
+
+@app.route(f"/{model_version}", methods=["POST"])
 def process():
-    return jsonify(model.generate(image=request.files["image"], text=request.form["text"]))
+    text = request.form["text"]
+    image = Image.open(request.files["image"]).convert("RGB")
+    return jsonify(model.generate(text=text, image=image))
 
 if __name__ == "__main__":
     app.run(debug=True)

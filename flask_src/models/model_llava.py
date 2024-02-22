@@ -21,8 +21,8 @@ from llava.mm_utils import (
 
 
 class LLaVA:
-    def __init__(self, model_path: str, device: str):
-        self.device = torch.device(f"cuda:{device}")
+    def __init__(self, model_path: str, device_id: str):
+        self.device = torch.device(f"cuda:{device_id}")
         disable_torch_init()
         model_name=get_model_name_from_path(model_path)
         self.tokenizer, self.model, self.image_processor, self.context_len = load_pretrained_model(
