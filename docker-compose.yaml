@@ -1,6 +1,6 @@
 
 services:
-  llava:
+  vicuna:
     build:
       context: .
       dockerfile: Dockerfile

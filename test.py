@@ -1,13 +1,13 @@
 import requests
 
 # URL of your Flask route
-url = 'http://localhost:33670/llava'
+url = 'http://localhost:33670/vicuna'
 
 # Path to the image file
 image_path = '/scratch/shuzhao/Dataset/USGG/GQA/images/10.jpg'
 
 # Text to send
-text = 'Describe this image.'
+text = 'Introduce PennState.'
 
 # Open the image file in binary mode
 with open(image_path, 'rb') as image_file:

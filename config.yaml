@@ -1,4 +1,4 @@
-model_version: llava
+model_version: vicuna
 host_port: 33670
 flask_port: 5000
 gpu_id: 7
